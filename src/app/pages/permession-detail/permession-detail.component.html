@@ -144,8 +144,7 @@
             </div>
 
             <div class="col-12 d-flex justify-content-end gap-2 mt-2">
-              <button type="submit" class="btn btn-primary d-flex align-items-center gap-2" [disabled]="editForm.invalid || saving"
-                      style="background: linear-gradient(135deg, #4f46e5, #7c3aed); border: none;">
+                    <button type="submit" class="btn btn-primary d-flex align-items-center gap-2" [disabled]="editForm.invalid || saving">
                 <span *ngIf="saving" class="spinner-border spinner-border-sm"></span>
                 <i *ngIf="!saving" class="bi bi-floppy"></i>
                 Salva modifiche

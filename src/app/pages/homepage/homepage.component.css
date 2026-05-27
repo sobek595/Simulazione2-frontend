@@ -1,0 +1,11 @@
+.homepage-page {
+	padding-bottom: 24px;
+}
+
+.homepage-page h5 {
+	color: var(--text);
+}
+
+.homepage-page .text-muted {
+	color: var(--muted) !important;
+}

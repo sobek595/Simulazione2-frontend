@@ -17,7 +17,7 @@ import { PendingOnlyDirective } from './utils/pending-only.directive';
 import { ManagerOnlyDirective } from './utils/manager-only.directive';
 import { EmployeeOnlyDirective } from './utils/employee-only.directive';
 import { CreatePermessionModalComponent } from './components/create-permession-modal/create-permession-modal.component';
-import { AnaliticsComponent } from './pages/analitics/analitics.component';
+import { StatisticsComponent } from './pages/statistics/statistics.component';
 import { BaseChartDirective, provideCharts, withDefaultRegisterables } from 'ng2-charts';
 
 @NgModule({
@@ -33,7 +33,7 @@ import { BaseChartDirective, provideCharts, withDefaultRegisterables } from 'ng2
     ManagerOnlyDirective,
     EmployeeOnlyDirective,
     CreatePermessionModalComponent,
-    AnaliticsComponent
+    StatisticsComponent
   ],
   imports: [
     BrowserModule,

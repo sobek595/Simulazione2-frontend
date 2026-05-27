@@ -6,7 +6,8 @@ import { authGuard } from './utils/auth.guard';
 import { managerGuard } from './utils/manager.guard';
 import { HomepageComponent } from './pages/homepage/homepage.component';
 import { PermessionDetailComponent } from './pages/permession-detail/permession-detail.component';
-import { AnaliticsComponent } from './pages/analitics/analitics.component';
+import { StatisticsComponent } from './pages/statistics/statistics.component';
+
 
 const routes: Routes = [
   {
@@ -24,8 +25,8 @@ const routes: Routes = [
     children: []
   },
   {
-    path: 'analitics',
-    component: AnaliticsComponent,
+    path: 'statistics',
+    component: StatisticsComponent,
     canActivate: [authGuard, managerGuard]
   },
   {

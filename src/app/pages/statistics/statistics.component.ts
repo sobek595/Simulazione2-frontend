@@ -4,12 +4,12 @@ import { ChartData, ChartOptions } from 'chart.js';
 import { AggregationResult, PermessionRequestService } from '../../services/permession-request.service';
 
 @Component({
-  selector: 'app-analitics',
+  selector: 'app-statistics',
   standalone: false,
-  templateUrl: './analitics.component.html',
-  styleUrl: './analitics.component.css'
+  templateUrl: './statistics.component.html',
+  styleUrl: './statistics.component.css'
 })
-export class AnaliticsComponent implements OnInit {
+export class StatisticsComponent implements OnInit {
   private permessionSrv = inject(PermessionRequestService);
   private fb = inject(FormBuilder);
 

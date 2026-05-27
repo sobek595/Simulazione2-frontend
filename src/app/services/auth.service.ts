@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { catchError, distinctUntilChanged, map, of, ReplaySubject, tap } from 'rxjs';
 import { User } from '../entities/User';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,7 @@ export class AuthService {
                       );
   
   login(email: string, password: string) {
-    return this.http.post<any>('/api/users/login', { email, password }).pipe(
+    return this.http.post<any>(`${environment.apiUrl}/api/users/login`, { email, password }).pipe(
       tap((res) => this.jwtSrv.setToken(res.token)),
       tap((res) => this._currentUser$.next(res.user)),
       map((res) => res.user),
@@ -47,6 +48,6 @@ export class AuthService {
     email: string,
     password: string
   ) {
-    return this.http.post(`/api/users/register`, {firstName, lastName, role, email, password});
+    return this.http.post(`${environment.apiUrl}/api/users/register`, {firstName, lastName, role, email, password});
 }
 }

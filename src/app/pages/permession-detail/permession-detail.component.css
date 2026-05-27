@@ -56,3 +56,8 @@
   color: var(--text);
   font-weight: 500;
 }
+
+.detail-field .form-control,
+.detail-field .form-select {
+  background: #fff;
+}

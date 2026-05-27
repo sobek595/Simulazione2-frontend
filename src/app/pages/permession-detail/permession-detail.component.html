@@ -111,10 +111,15 @@
             <div class="col-12 col-md-6">
               <div class="detail-field">
                 <label class="detail-label" for="categoryDescription"><i class="bi bi-tag"></i> Categoria <span class="text-danger">*</span></label>
-                <select id="categoryDescription" class="form-select" formControlName="categoryDescription">
+                <select id="categoryDescription" class="form-select" formControlName="categoryDescription"
+                  [class.is-invalid]="editForm.get('categoryDescription')?.invalid && editForm.get('categoryDescription')?.touched">
                   <option [ngValue]="null" disabled>-- Seleziona categoria --</option>
                   <option *ngFor="let c of categories" [value]="c.description">{{ c.description }}</option>
                 </select>
+                <div class="invalid-feedback d-block"
+                  *ngIf="editForm.get('categoryDescription')?.invalid && editForm.get('categoryDescription')?.touched">
+                  La categoria è obbligatoria
+                </div>
               </div>
             </div>
 
@@ -123,26 +128,41 @@
             <div class="col-12">
               <div class="detail-field">
                 <label class="detail-label" for="motivation"><i class="bi bi-chat-left-text"></i> Motivazione <span class="text-danger">*</span></label>
-                <textarea id="motivation" class="form-control" formControlName="motivation" rows="3"></textarea>
+                <textarea id="motivation" class="form-control" formControlName="motivation" rows="3"
+                  [class.is-invalid]="editForm.get('motivation')?.invalid && editForm.get('motivation')?.touched"></textarea>
+                <div class="invalid-feedback d-block"
+                  *ngIf="editForm.get('motivation')?.invalid && editForm.get('motivation')?.touched">
+                  La motivazione è obbligatoria
+                </div>
               </div>
             </div>
 
             <div class="col-12 col-md-6">
               <div class="detail-field">
                 <label class="detail-label" for="dateStart"><i class="bi bi-calendar-event"></i> Data inizio <span class="text-danger">*</span></label>
-                <input id="dateStart" type="date" class="form-control" formControlName="dateStart" />
+                <input id="dateStart" type="date" class="form-control" formControlName="dateStart"
+                  [class.is-invalid]="editForm.get('dateStart')?.invalid && editForm.get('dateStart')?.touched" />
+                <div class="invalid-feedback d-block"
+                  *ngIf="editForm.get('dateStart')?.invalid && editForm.get('dateStart')?.touched">
+                  La data di inizio è obbligatoria
+                </div>
               </div>
             </div>
 
             <div class="col-12 col-md-6">
               <div class="detail-field">
                 <label class="detail-label" for="dateEnd"><i class="bi bi-calendar-check"></i> Data fine <span class="text-danger">*</span></label>
-                <input id="dateEnd" type="date" class="form-control" formControlName="dateEnd" />
+                <input id="dateEnd" type="date" class="form-control" formControlName="dateEnd"
+                  [class.is-invalid]="editForm.get('dateEnd')?.invalid && editForm.get('dateEnd')?.touched" />
+                <div class="invalid-feedback d-block"
+                  *ngIf="editForm.get('dateEnd')?.invalid && editForm.get('dateEnd')?.touched">
+                  La data di fine è obbligatoria
+                </div>
               </div>
             </div>
 
             <div class="col-12 d-flex justify-content-end gap-2 mt-2">
-                    <button type="submit" class="btn btn-primary d-flex align-items-center gap-2" [disabled]="editForm.invalid || saving">
+                    <button type="submit" class="btn btn-primary d-flex align-items-center gap-2" [disabled]="saving">
                 <span *ngIf="saving" class="spinner-border spinner-border-sm"></span>
                 <i *ngIf="!saving" class="bi bi-floppy"></i>
                 Salva modifiche

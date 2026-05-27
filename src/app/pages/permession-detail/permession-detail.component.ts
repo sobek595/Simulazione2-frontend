@@ -99,8 +99,13 @@ export class PermessionDetailComponent implements OnInit {
   }
 
   onSave() {
-    if (this.editForm.invalid || !this.request?.id) return;
+    if (!this.request?.id) return;
+    if (this.editForm.invalid) {
+      this.editForm.markAllAsTouched();
+      return;
+    }
     this.saving = true;
+    this.error = '';
     const { categoryDescription, dateStart, dateEnd, motivation } = this.editForm.value;
     const body = {
       categoryDescription: categoryDescription!,
@@ -114,7 +119,7 @@ export class PermessionDetailComponent implements OnInit {
         this.saving = false;
         this.editMode = false;
       },
-      error: () => { this.error = 'Errore durante il salvataggio.'; this.saving = false; }
+      error: (err) => { this.error = err.error?.message ?? 'Errore durante il salvataggio.'; this.saving = false; }
     });
   }
 
@@ -128,7 +133,7 @@ export class PermessionDetailComponent implements OnInit {
     this.deleting = true;
     this.service.delete(id).subscribe({
       next: () => this.router.navigate(['/homepage']),
-      error: () => { this.error = 'Errore durante la cancellazione.'; this.deleting = false; this.confirmDelete = false; }
+      error: (err) => { this.error = err.error?.message ?? 'Errore durante la cancellazione.'; this.deleting = false; this.confirmDelete = false; }
     });
   }
 
@@ -140,7 +145,7 @@ export class PermessionDetailComponent implements OnInit {
     if (!this.request?.id) return;
     this.service.approve(this.request.id).subscribe({
       next: (updated) => { this.request = updated; },
-      error: () => { this.error = 'Errore durante l\'approvazione.'; }
+      error: (err) => { this.error = err.error?.message ?? 'Errore durante l\'approvazione.'; }
     });
   }
 
@@ -148,7 +153,7 @@ export class PermessionDetailComponent implements OnInit {
     if (!this.request?.id) return;
     this.service.reject(this.request.id).subscribe({
       next: (updated) => { this.request = updated; },
-      error: () => { this.error = 'Errore durante il rifiuto.'; }
+      error: (err) => { this.error = err.error?.message ?? 'Errore durante il rifiuto.'; }
     });
   }
 }
